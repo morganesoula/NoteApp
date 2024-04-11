@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -58,11 +60,26 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // CollectAsStateWithLifecycle
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.lifecycle.compose)
+
+
+    // ROOM
+    api(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
+
+    // HILT
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // NAVIGATION
+    implementation(libs.navigation)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
 }
